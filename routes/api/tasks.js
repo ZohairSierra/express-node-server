@@ -40,11 +40,13 @@ router.post('/', (req, res) => {
 // @access Public (for now) 
 router.put('/:id', (req, res) => {
     const oldTask = Task.findById(req.params.id);
+    console.log('oldTask', oldTask);
+    console.log('req', req);
     oldTask = {
         ...oldTask,
-        text: res.body.text,
-        day: res.body.day,
-        reminder: res.body.reminder
+        text: req.body.text,
+        day: req.body.day,
+        reminder: req.body.reminder
     };
     oldTask.save().then(task => res.json(task));
 });
