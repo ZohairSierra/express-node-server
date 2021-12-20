@@ -10,8 +10,8 @@ const cors = require('cors');
 const app = express();
 
 app.use(cors({
-    // origin: 'http://localhost:4200'
-    origin: 'https://confident-kirch-028f9c.netlify.app/'
+    origin: 'http://localhost:4200'
+    // origin: 'https://confident-kirch-028f9c.netlify.app/'
 }));
 
 app.use(bodyParser.json());

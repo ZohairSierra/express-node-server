@@ -9,9 +9,13 @@ const Task = require('../../models/Task');
 // @desc GET All tasks
 // @access PUBLIC
 router.get('/', (req, res) => {
+    console.log('inside /');
     Task.find()
         .sort({ date: -1 })
-        .then(tasks => res.json(tasks));
+        .then(tasks => {
+            console.log('inside then', tasks);
+            res.json(tasks);
+        });
             // +1 in sort() means ascending and -1 means descending
             // .find(), .sort(), .then() are mongoose ORM methods to fetch MongoDB records
 });
