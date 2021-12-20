@@ -9,9 +9,11 @@ const cors = require('cors');
 
 const app = express();
 
-app.use(cors({
-    origin: 'https://confident-kirch-028f9c.netlify.app/'
-}));
+// app.use(cors({
+//     origin: 'https://confident-kirch-028f9c.netlify.app/'
+// }));
+
+app.use(cors());
 
 app.use(bodyParser.json());
 
