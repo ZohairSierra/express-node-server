@@ -40,12 +40,13 @@ router.post('/', (req, res) => {
 // @access Public (for now) 
 router.put('/:id', (req, res) => {
     const oldTask = Task.findById(req.params.id);
-    oldTask.update({
+    oldTask = {
         ...oldTask,
-        text: req.body.text,
-        day: req.body.day,
-        reminder: req.body.reminder
-    }).save().then(task => res.json(task));
+        text: res.body.text,
+        day: res.body.day,
+        reminder: res.body.reminder
+    };
+    oldTask.save().then(task => res.json(task));
 });
 
 // @route DELETE api/tasks/:id
