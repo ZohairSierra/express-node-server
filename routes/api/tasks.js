@@ -39,16 +39,18 @@ router.post('/', (req, res) => {
 // @desc Modify a task 
 // @access Public (for now) 
 router.put('/:id', (req, res) => {
-    let oldTask = Task.findById(req.params.id);
-    console.log('oldTask', oldTask);
-    console.log('req', req);
-    oldTask = {
-        ...oldTask,
+    Task.findByIdAndUpdate(req.params.id, {
         text: req.body.text,
         day: req.body.day,
         reminder: req.body.reminder
-    };
-    oldTask.save().then(task => res.json(task));
+    }, (error, task) => {
+        if(error) {
+            console.log(`Error updating model: ${error}`);
+        }
+        else {
+            res.json(task);
+        }
+    });
 });
 
 // @route DELETE api/tasks/:id
