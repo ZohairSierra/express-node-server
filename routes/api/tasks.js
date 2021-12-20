@@ -39,7 +39,7 @@ router.post('/', (req, res) => {
 // @desc Modify a task 
 // @access Public (for now) 
 router.put('/:id', (req, res) => {
-    const oldTask = Task.findById(req.params.id);
+    let oldTask = Task.findById(req.params.id);
     console.log('oldTask', oldTask);
     console.log('req', req);
     oldTask = {
