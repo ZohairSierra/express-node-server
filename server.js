@@ -10,13 +10,11 @@ const cors = require('cors');
 const app = express();
 
 app.use(cors({
-    origin: 'http://localhost:4200'
+    // origin: 'http://localhost:4200'
+    origin: 'https://confident-kirch-028f9c.netlify.app/'
 }));
 
 app.use(bodyParser.json());
-
-app.use('/api/tasks', tasks);
-
 
 // DB config
 const db = require('./config/keys').mongoURI;
@@ -39,6 +37,8 @@ app.get('/', (req, res) => {
         .send('Hello server is running')
         .end();
 });
+
+app.use('/api/tasks', tasks);
 
 app.listen(port, () => {
     console.log(`Server started and listening on port: ${port}`);
