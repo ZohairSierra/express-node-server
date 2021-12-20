@@ -38,7 +38,7 @@ router.post('/', (req, res) => {
 // @route EDIT api/tasks/:id 
 // @desc Modify a task 
 // @access Public (for now) 
-router.post('/:id', (req, res) => {
+router.put('/:id', (req, res) => {
     const oldTask = Task.findById(req.params.id);
     oldTask.update({
         ...oldTask,
