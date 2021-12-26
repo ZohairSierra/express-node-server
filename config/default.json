@@ -1,0 +1,9 @@
+{
+    "mongoURI": "mongodb+srv://zohair:zohair@cluster0.f00gu.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    "jwtSecret": "secret_tech_sierra",
+    "MAILGUN_APIKEY": "ec1b45c81d301e8d15ca687ff8d429e2-1831c31e-215b1e0b",
+    "frontend_url": {
+        "development": "http://localhost:4200",
+        "production": "https://confident-kirch-028f9c.netlify.app"
+    }
+}

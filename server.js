@@ -1,9 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-
-const bodyParser = require('body-parser');
-
-const tasks = require('./routes/api/tasks');
+const config = require('config');
 
 const cors = require('cors');
 
@@ -15,22 +12,25 @@ const app = express();
 
 app.use(cors());
 
-app.use(bodyParser.json());
+app.use(express.json());
 
 // DB config
-const db = require('./config/keys').mongoURI;
+const db = config.get('mongoURI');
 
 // Connect to Mongo
 // Promise based
 mongoose
-    .connect(db)
+    .connect(db, {
+        useNewUrlParser: true,
+        // useCreateIndex: true
+    })
     .then(() => {
         console.log(`MongoDB connected...`);
     }).catch(error => {
-        console.log(error.response);
+        console.log(error);
     });
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 6678;
 
 app.get('/', (req, res) => {
     res
@@ -39,7 +39,9 @@ app.get('/', (req, res) => {
         .end();
 });
 
-app.use('/api/tasks', tasks);
+app.use('/api/tasks', require('./routes/api/tasks'));
+app.use('/api/users', require('./routes/api/users'));
+app.use('/api/auth', require('./routes/api/auth'));
 
 app.listen(port, () => {
     console.log(`Server started and listening on port: ${port}`);
